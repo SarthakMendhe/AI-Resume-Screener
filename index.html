@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Resume Screening System</title>
+<meta name="description" content="Rank resumes against a job description using NLP and TF-IDF cosine similarity — 100% in your browser." />
+<link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="badge">⚡ Runs entirely in your browser</div>
+      <h1>AI Resume <span class="grad">Screening System</span></h1>
+      <p class="sub">
+        Upload multiple resumes, paste a job description, and let NLP + TF-IDF
+        cosine similarity rank candidates instantly. No backend, no API keys.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2><span class="step-num">1</span> Job Description</h2>
+      <textarea id="jobDesc" rows="8" placeholder="Paste the job description here..."></textarea>
+    </section>
+
+    <section class="card">
+      <h2><span class="step-num">2</span> Upload Resumes</h2>
+      <label id="dropzone" class="dropzone" for="fileInput">
+        <div class="dz-icon">📄</div>
+        <div class="dz-title">Drop resumes here or <span>browse</span></div>
+        <div class="dz-hint">Supports PDF, DOCX, TXT — multiple files</div>
+        <input id="fileInput" type="file" accept=".pdf,.docx,.txt" multiple hidden />
+      </label>
+      <ul id="fileList" class="file-list"></ul>
+    </section>
+
+    <div class="actions">
+      <button id="analyzeBtn" class="btn-primary">
+        <span class="btn-label">🚀 Analyze & Rank</span>
+        <span class="spinner" hidden></span>
+      </button>
+      <button id="resetBtn" class="btn-ghost">Reset</button>
+    </div>
+
+    <section id="results" class="results" hidden>
+      <h2>🏆 Ranked Results</h2>
+      <div id="resultsList"></div>
+    </section>
+
+    <div id="toast" class="toast" hidden></div>
+  </main>
+
+  <footer>
+    <p>Built with vanilla JS · pdf.js · mammoth.js · TF-IDF cosine similarity</p>
+  </footer>
+
+  <!-- Libraries from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
